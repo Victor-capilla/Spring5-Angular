@@ -20,5 +20,31 @@ public class ClienteServiceImpl implements IClienteService{
 		// TODO Auto-generated method stub
 		return (List<Cliente>)clienteDao.findAll();
 	}
+	@Override
+	public Cliente findByID(Long id) {
+		// TODO Auto-generated method stub
+		return clienteDao.findById(id).orElse(null);
+	}
+	@Override
+	public Cliente save(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return clienteDao.save(cliente);
+	}
+	@Override
+	public List<Cliente> saveAll(List<Cliente> clientes) {
+		// TODO Auto-generated method stub
+		return (List<Cliente>) clienteDao.saveAll(clientes);
+	}
+
+	@Override
+	public void deleteAll(List<Cliente> clientes) {
+		// TODO Auto-generated method stub
+		clienteDao.deleteAll(clientes);
+	}
+	@Override
+	public void delete(Long id) {
+		clienteDao.deleteById(id);
+		
+	}
 
 }
