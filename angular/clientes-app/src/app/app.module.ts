@@ -11,12 +11,16 @@ import { DirectivaComponent } from './directiva/directiva.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ClientesService } from './clientes/clientes.service';
 import { Routes, RouterModule } from '@angular/router';
+import { FormComponent } from './clientes/form.component';
+import {FormsModule } from '@angular/forms';
 
 
 export const routes: Routes = [
   {path: '' , redirectTo: '/directivas' ,pathMatch: 'full'},
   {path: 'directivas' , component : DirectivaComponent},
   {path: 'clientes' ,  component : ClientesComponent},
+  {path: 'clientes/formulario' ,  component : FormComponent},
+  {path: 'clientes/formulario/:id' ,  component : FormComponent},
 ]
 
 ClientesService
@@ -26,12 +30,14 @@ ClientesService
     HeaderComponent,
     FooterComponent,
     DirectivaComponent,
-    ClientesComponent
+    ClientesComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ClientesService],
   bootstrap: [AppComponent]

@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">
+       <p *ngIf="!cliente.id else elseBlock1">{{titulo}}</p>
+       <ng-template #elseBlock1><p>Editar cliente</p></ng-template>
+    </div>
+    <div class="card-body" >
+      <form class="form bg-dark text-white  py-2 px-2">
+        <div class="form-group row">
+            <label for="my-input" class="col-form-label col-sm-2">Nombre</label>
+            <div class="col-sm-6">
+                <input id="Nombre" class="form-control" type="text" name="Nombre" [(ngModel)]="cliente.nombre">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="my-input" class="col-form-label col-sm-2">Apellido</label>
+            <div class="col-sm-6">
+                <input id="Apellido" class="form-control" type="text" name="Apellido" [(ngModel)]="cliente.apellido">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="my-input" class="col-form-label col-sm-2">Email</label>
+            <div class="col-sm-6">
+                <input id="Email" class="form-control" type="text" name="Email" [(ngModel)]="cliente.email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <button class="btn btn-primary" role="button" type="submit" (click) ='crear()' *ngIf="!cliente.id ;else elseBlock"> crear</button>
+                <ng-template #elseBlock>
+                    <button class="btn btn-primary" role="button" type="submit" (click) ='modificarCliente()' > editar</button>
+                </ng-template>
+            </div>
+        </div>
+      </form>
+    </div>
+</div>

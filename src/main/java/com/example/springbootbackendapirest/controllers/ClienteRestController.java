@@ -45,6 +45,12 @@ public class ClienteRestController {
 		clienteService.delete(id);
 	}
 	
+	@DeleteMapping("/clientes")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteAll(@RequestBody List<Cliente> clientes) {
+		clienteService.deleteAll(clientes);
+	}
+	
 	@PutMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente update(@RequestBody Cliente cliente, @PathVariable Long id) {
@@ -52,7 +58,7 @@ public class ClienteRestController {
 		clienteActual.setApellido(cliente.getApellido());
 		clienteActual.setEmail(cliente.getEmail());
 		clienteActual.setNombre(cliente.getNombre());
-		return clienteService.save(cliente);
+		return clienteService.save(clienteActual);
 	}
 	
 	@PostMapping("/clientes")
