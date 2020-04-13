@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+html{
+    position: relative;
+    min-height: 100%;
+}
+body{
+    margin-bottom: 60px;
+}
+.wrap{
+    padding-bottom: 60px;
+    padding-top: 40px;
+}
+td{
+    margin: auto;
+    text-align: center;
+}
+.table td{
+    vertical-align:middle;
+}
+.card{
+    border:1px solid black;
+}

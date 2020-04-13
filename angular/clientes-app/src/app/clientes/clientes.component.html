@@ -1,9 +1,12 @@
-<div class="card text-white bg-primary mb-3" >
+<div class="card text-white bg-info mb-3" >
     <div class="card-header">Clientes</div>
     <div class="card-body">
         <button class="btn btn-info" [routerLink]="['/clientes/formulario']" routerLinkActive="router-link-active" >crear cliente</button>
       <h5 class="card-title">Listado de clientes</h5>
-      <table class="table table-bordered table-striped">
+      <div *ngIf="clientes?.length== 0" class="alert alert-warning">
+        Todavia no hay clientes
+      </div>
+      <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
           <thead>
              <th>id</th>
              <th>nombre</th>
