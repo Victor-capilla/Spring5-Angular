@@ -4,6 +4,8 @@ import { ClientesService } from './clientes.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
+import { catchError } from 'rxjs/operators';
+
 
 
 
@@ -23,20 +25,18 @@ export class FormComponent implements OnInit {
     this.cargarCliente()
   }
   public crear():void {
-    console.log("Cliked!");
-    console.log(this.cliente);
     this.clienteService.postClientes(this.cliente).subscribe(
-      response => {
+      paramsOfEndPoint => {
         this.router.navigate(["/clientes"])
-        swal.fire('Nuevo cliente', `Cliente ${response.nombre} creado con exito!  `, 'success');
+        swal.fire('Nuevo cliente', `El Cliente ${paramsOfEndPoint.cliente.nombre} ha sido  creado con exito!  `, 'success');
     });
 
   }
 
   public cargarCliente():void {
    this.activatedRouter.params.subscribe(
-     params => {
-       let id = params['id']
+    cliente => {
+       let id = cliente['id']
        if (id) {
          this.clienteService.getCliente(id).subscribe(
            cliente => this.cliente = cliente
@@ -47,9 +47,9 @@ export class FormComponent implements OnInit {
 
    public modificarCliente(): void {
     this.clienteService.modificarCliente(this.cliente).subscribe(
-      cliente => {
+      paramsOfEndPoint => {
       this.router.navigate(['/clientes']);
-      swal.fire('El cliente' , cliente.nombre +  'Ha sido modificado' ,'success')
+      swal.fire('Cliente Actualizado' , paramsOfEndPoint["cliente"].nombre +  ' Ha sido modificado' ,'success')
       }
     )
   }

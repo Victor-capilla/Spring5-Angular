@@ -1,8 +1,9 @@
 package com.example.springbootbackendapirest.controllers;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;             
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springbootbackendapirest.models.entity.Cliente;
 import com.example.springbootbackendapirest.models.services.IClienteService;
-
-import net.bytebuddy.asm.Advice.Return;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -94,10 +93,10 @@ public class ClienteRestController {
 		}
 	
 		try {
-		
 			clienteActual.setApellido(cliente.getApellido());
 			clienteActual.setEmail(cliente.getEmail());
 			clienteActual.setNombre(cliente.getNombre());
+			clienteActual.setCreateAt("".equals(cliente.getCreateAt()) || "null".equals(cliente.getCreateAt())?new Date() : cliente.getCreateAt());
 			clienteUpdated=clienteService.save(clienteActual);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "error al actualizar el cliente en la bbdd");
@@ -119,12 +118,16 @@ public class ClienteRestController {
 
 		
 		try {
+			cliente.setCreateAt(new Date());
 			clienteNew = clienteService.save(cliente);
 		} catch (Exception e) {
 			response.put("mensaje", "Error al insertar en la bbdd");
 			response.put("error", e.getMessage());
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		response.put("mensaje", "Cliente creado con exito");
+		response.put("cliente", clienteNew);
+
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
