@@ -1,4 +1,7 @@
 <div class="card">
+    <ul class="alert alert-danger" *ngIf="errores?.length > 0">
+        <li *ngFor="let err of errores">{{err}} </li>
+    </ul>
     <div class="card-header">
        <p *ngIf="!cliente.id else elseBlock1">{{titulo}}</p>
        <ng-template #elseBlock1><p>Editar cliente</p></ng-template>

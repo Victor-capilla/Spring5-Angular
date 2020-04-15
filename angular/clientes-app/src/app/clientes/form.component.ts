@@ -18,6 +18,7 @@ import { catchError } from 'rxjs/operators';
 export class FormComponent implements OnInit {
   public cliente: Cliente = new Cliente();
   public titulo : string = "crear cliente";
+  public errores: string[];
   constructor(private clienteService : ClientesService ,private router: Router, private activatedRouter :ActivatedRoute ) {
   }
 
@@ -29,7 +30,13 @@ export class FormComponent implements OnInit {
       paramsOfEndPoint => {
         this.router.navigate(["/clientes"])
         swal.fire('Nuevo cliente', `El Cliente ${paramsOfEndPoint.cliente.nombre} ha sido  creado con exito!  `, 'success');
-    });
+    },
+      err => {
+        this.errores = err.error.errores as string[];
+        console.error("Codigo del error desde el backend :" +err.status)
+        console.error(this.errores)
+      },
+    );
 
   }
 

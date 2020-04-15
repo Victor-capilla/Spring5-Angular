@@ -24,6 +24,9 @@ export class ClientesService {
   postClientes(cliente : Cliente): Observable<any>{
     return this.http.post<any>(this.urlEndPoint, cliente , {headers :this.httpHeaders}).pipe(
       catchError(e => {
+        if (e.status===400) {
+          return throwError(e);
+        }
         this.router.navigate(["/clientes"])
         console.error(e.error.mensaje);
         Swal.fire('Error al crear', e.error.mensaje, 'error');

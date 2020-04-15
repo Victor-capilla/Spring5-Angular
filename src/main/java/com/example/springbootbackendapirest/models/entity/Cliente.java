@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
@@ -24,12 +26,17 @@ public class Cliente implements Serializable{
 	private Long id;
 	
 	@Column(nullable = false)
+	@NotEmpty
+	@Size(min = 4)
 	private String nombre;
 	
+	@NotEmpty
+	@Size(min = 4)
 	private String apellido;
 	
 	@Column(nullable = false,unique = true)
 	@Size(min = 5)
+	@Email
 	private String email;
 	
 	@Column(name="create_at")
