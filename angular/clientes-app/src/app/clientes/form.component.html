@@ -4,7 +4,7 @@
        <ng-template #elseBlock1><p>Editar cliente</p></ng-template>
     </div>
     <div class="card-body" >
-      <form class="form bg-dark text-white  py-2 px-2">
+      <form class="form bg-dark text-white  py-2 px-2" #clienteForm="ngForm">
         <div class="form-group row">
             <label for="my-input" class="col-form-label col-sm-2">Nombre</label>
             <div class="col-sm-6">
@@ -46,9 +46,9 @@
 
         <div class="form-group row">
             <div class="col-sm-6">
-                <button class="btn btn-primary" role="button" type="submit" (click) ='crear()' *ngIf="!cliente.id ;else elseBlock"> crear</button>
+                <button class="btn btn-primary" role="button" type="submit" (click) ='crear()' *ngIf="!cliente.id ;else elseBlock" [show] ="!clienteForm.form.valid"> crear</button>
                 <ng-template #elseBlock>
-                    <button class="btn btn-primary" role="button" type="submit" (click) ='modificarCliente()' > editar</button>
+                    <button class="btn btn-primary" role="button" type="submit" (click) ='modificarCliente()' [disabled] ="!clienteForm.form.valid"> editar</button>
                 </ng-template>
             </div>
         </div>
