@@ -1,0 +1,21 @@
+input:focus:invalid{
+    /* insert your own styles for invalid form input */
+    border: 2px solid rgb(204, 95, 95);
+  }
+  input:valid{
+    /* insert your own styles for invalid form input */
+    border: 2px solid rgb(108, 199, 108);
+  }
+  .alert{
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+  }
+  .alert ul {
+    height: 100%;
+    margin-bottom: 0;
+  }
+  .alert ul li{
+    margin-top: 0;
+    height: 100%;
+  }

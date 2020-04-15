@@ -22,14 +22,7 @@ export class ClientesService {
   }
 //Devolvemos un observable de tipo Any para no que devuelva el map con todos los parametros del endpoint del backend
   postClientes(cliente : Cliente): Observable<any>{
-    return this.http.post<any>(this.urlEndPoint, cliente , {headers :this.httpHeaders}).pipe(
-      catchError(e => {
-        this.router.navigate(["/clientes"])
-        console.error(e.error.mensaje);
-        Swal.fire('Error al crear', e.error.mensaje, 'error');
-        return throwError(e);
-      })
-    );
+    return this.http.post<any>(this.urlEndPoint, cliente , {headers :this.httpHeaders});
   }
 
   getCliente(id): Observable<any>{
