@@ -7,8 +7,6 @@ import  {catchError, map }  from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { routes } from '../app.module';
-import { DatePipe, getLocaleEraNames, registerLocaleData} from '@angular/common';
-import  localeES from '@angular/common/locales/es';
 
 
 
@@ -23,15 +21,7 @@ export class ClientesService {
     return this.http.get<any[]>(this.urlEndPoint).pipe(
       map(response => {
         let clientes = response as Cliente[];
-        return clientes.map(
-          cliente => {
-            cliente.nombre = cliente.nombre.toUpperCase();
-            registerLocaleData(localeES, 'es');
-            let datePipe = new DatePipe('es');
-            cliente.createAt = datePipe.transform(cliente.createAt,'fullDate')
-            return cliente;
-          }
-        )
+        return clientes;
       })
     );
   }
