@@ -3,10 +3,12 @@ import {CLIENTES} from './clientes.json';
 import { Cliente} from './cliente';
 import  {Observable, of, throwError }  from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import  {catchError }  from 'rxjs/operators';
+import  {catchError, map }  from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { routes } from '../app.module';
+import { DatePipe, getLocaleEraNames, registerLocaleData} from '@angular/common';
+import  localeES from '@angular/common/locales/es';
 
 
 
@@ -18,7 +20,20 @@ export class ClientesService {
   constructor(private http: HttpClient , private router:Router) { }
 
   getClientes(): Observable<any[]>{
-    return this.http.get<any[]>(this.urlEndPoint);
+    return this.http.get<any[]>(this.urlEndPoint).pipe(
+      map(response => {
+        let clientes = response as Cliente[];
+        return clientes.map(
+          cliente => {
+            cliente.nombre = cliente.nombre.toUpperCase();
+            registerLocaleData(localeES, 'es');
+            let datePipe = new DatePipe('es');
+            cliente.createAt = datePipe.transform(cliente.createAt,'fullDate')
+            return cliente;
+          }
+        )
+      })
+    );
   }
 //Devolvemos un observable de tipo Any para no que devuelva el map con todos los parametros del endpoint del backend
   postClientes(cliente : Cliente): Observable<any>{
