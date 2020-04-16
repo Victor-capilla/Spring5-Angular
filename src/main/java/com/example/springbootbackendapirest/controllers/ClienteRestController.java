@@ -10,6 +10,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -29,7 +31,7 @@ import com.example.springbootbackendapirest.models.services.IClienteService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class ClienteRestController {
 	
 	@Autowired
@@ -38,6 +40,12 @@ public class ClienteRestController {
 	@GetMapping("/clientes")
 	public List<Cliente> index(){
 		return clienteService.findAll();
+		
+	}
+	
+	@GetMapping("/clientes/pagina/{page}")
+	public Page<Cliente>  index(@PathVariable Integer page){
+		return clienteService.findAll(PageRequest.of(page, 5));
 		
 	}
 	

@@ -3,7 +3,7 @@ import {CLIENTES} from './clientes.json';
 import { Cliente} from './cliente';
 import  {Observable, of, throwError }  from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import  {catchError, map }  from 'rxjs/operators';
+import  {catchError, map, tap }  from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { routes } from '../app.module';
@@ -13,16 +13,12 @@ import { routes } from '../app.module';
 
 @Injectable()
 export class ClientesService {
-  private urlEndPoint:string = 'http://localhost:8181/api/clientes';
+  private urlEndPoint:string = 'http://localhost:8181/clientes';
   private httpHeaders = new HttpHeaders({'content-Type' : 'application/json'});
   constructor(private http: HttpClient , private router:Router) { }
 
-  getClientes(): Observable<any[]>{
-    return this.http.get<any[]>(this.urlEndPoint).pipe(
-      map(response => {
-        let clientes = response as Cliente[];
-        return clientes;
-      })
+  getClientes(page: number): Observable<any>{
+    return this.http.get<any[]>(`${this.urlEndPoint}/pagina/${page}`).pipe(
     );
   }
 //Devolvemos un observable de tipo Any para no que devuelva el map con todos los parametros del endpoint del backend

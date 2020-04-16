@@ -1,0 +1,17 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item" style="margin-right: 0px"><a class="page-link"  [routerLink]="['/clientes/pagina' ,0]">Primera</a></li>
+      <li [ngClass]="pagina == 0 ? 'disabled': ''" class="page-item active" style="margin-right: 0px">
+        <a class="page-link"  aria-label="Previous" [routerLink]="['/clientes/pagina' ,pagina-1]">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li style="width: 90%"></li>
+      <li [ngClass]="pagina == pagesTotal ? 'disabled': ''" class="page-item active" style="margin-left: 0px">
+        <a class="page-link" [routerLink]="['/clientes/pagina' ,pagina+1]" routerLinkActive="router-link-active"  aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link"  [routerLink]="['/clientes/pagina' ,pagesTotal]" style="margin-left: 0px">Ultima</a></li>
+    </ul>
+  </nav>
