@@ -13,16 +13,28 @@ import { routes } from '../app.module';
 
 @Injectable()
 export class ClientesService {
-  private urlEndPoint:string = 'http://localhost:8181/api/clientes';
+  private urlEndPoint:string = 'http://localhost:8181/clientes';
   private httpHeaders = new HttpHeaders({'content-Type' : 'application/json'});
   constructor(private http: HttpClient , private router:Router) { }
 
-  getClientes(): Observable<any[]>{
-    return this.http.get<any[]>(this.urlEndPoint);
+  getClientes(page: number): Observable<any>{
+    return this.http.get<any[]>(`${this.urlEndPoint}/pagina/${page}`).pipe(
+    );
   }
 //Devolvemos un observable de tipo Any para no que devuelva el map con todos los parametros del endpoint del backend
   postClientes(cliente : Cliente): Observable<any>{
     return this.http.post<any>(this.urlEndPoint, cliente , {headers :this.httpHeaders});
+    return this.http.post<any>(this.urlEndPoint, cliente , {headers :this.httpHeaders}).pipe(
+      catchError(e => {
+        if (e.status===400) {
+          return throwError(e);
+        }
+        this.router.navigate(["/clientes"])
+        console.error(e.error.mensaje);
+        Swal.fire('Error al crear', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
   }
 
   getCliente(id): Observable<any>{

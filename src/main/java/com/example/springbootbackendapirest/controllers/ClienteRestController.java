@@ -1,15 +1,20 @@
 package com.example.springbootbackendapirest.controllers;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +31,7 @@ import com.example.springbootbackendapirest.models.services.IClienteService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class ClienteRestController {
 	
 	@Autowired
@@ -35,6 +40,12 @@ public class ClienteRestController {
 	@GetMapping("/clientes")
 	public List<Cliente> index(){
 		return clienteService.findAll();
+		
+	}
+	
+	@GetMapping("/clientes/pagina/{page}")
+	public Page<Cliente>  index(@PathVariable Integer page){
+		return clienteService.findAll(PageRequest.of(page, 5));
 		
 	}
 	
@@ -82,16 +93,25 @@ public class ClienteRestController {
 	}
 	
 	@PutMapping("/clientes/{id}")
-	public ResponseEntity<?> update(@RequestBody Cliente cliente, @PathVariable Long id) {
+	public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente,BindingResult result, @PathVariable Long id) {
 		Cliente clienteActual = clienteService.findByID(id);
 		Cliente clienteUpdated = null;
 		Map<String, Object> response = new HashMap<>();
+		
+		if (result.hasFieldErrors()) {
+			List<String> errores = result.getFieldErrors()
+					.stream()
+					.map(error -> "El campo" + error.getField() + " "+ error.getDefaultMessage())
+					.collect(Collectors.toList());
+			response.put("errores" , errores);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		}
 		
 		if (clienteActual == null) {
 			response.put("mensaje", "Error : el cliente ".concat(cliente.getId().toString()).concat(" no existe en la bbdd"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
-	
+		
 		try {
 			clienteActual.setApellido(cliente.getApellido());
 			clienteActual.setEmail(cliente.getEmail());
@@ -112,10 +132,18 @@ public class ClienteRestController {
 	
 	@PostMapping("/clientes")
 	//@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> create(@RequestBody Cliente cliente) {
+	public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente,BindingResult result ) {
 		Cliente clienteNew = null;
 		Map<String, Object> response = new HashMap<>();
-
+		
+		if (result.hasFieldErrors()) {
+			List<String> errores = result.getFieldErrors()
+					.stream()
+					.map(error -> "El campo" + error.getField() + " "+ error.getDefaultMessage())
+					.collect(Collectors.toList());
+			response.put("errores" , errores);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		}
 		
 		try {
 			cliente.setCreateAt(new Date());
