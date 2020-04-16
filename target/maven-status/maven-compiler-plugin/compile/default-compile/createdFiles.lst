@@ -1,0 +1,6 @@
+com\example\springbootbackendapirest\models\entity\Cliente.class
+com\example\springbootbackendapirest\models\services\ClienteServiceImpl.class
+com\example\springbootbackendapirest\models\services\IClienteService.class
+com\example\springbootbackendapirest\SpringBootBackendApirestApplication.class
+com\example\springbootbackendapirest\models\dao\IClienteDao.class
+com\example\springbootbackendapirest\controllers\ClienteRestController.class

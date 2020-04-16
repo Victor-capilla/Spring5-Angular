@@ -45,6 +45,18 @@
         </div>
 
         <div class="form-group row">
+            <label for="my-input" class="col-form-label col-sm-2">Fecha</label>
+            <div class="col-sm-6">
+                <input id="fecha" class="form-control" type="date" name="fecha" [(ngModel)]="cliente.createAt" required #fecha="ngModel">
+                <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+                    <ul *ngIf="fecha.errors.required ">
+                        <li *ngIf="fecha.errors.required">El campo es requerido</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
             <div class="col-sm-6">
                 <button class="btn btn-primary" role="button" type="submit" (click) ='crear()' *ngIf="!cliente.id ;else elseBlock" [disabled] ="!clienteForm.form.valid"> crear</button>
                 <ng-template #elseBlock>

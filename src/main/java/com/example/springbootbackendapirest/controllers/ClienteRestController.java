@@ -146,7 +146,6 @@ public class ClienteRestController {
 		}
 		
 		try {
-			cliente.setCreateAt(new Date());
 			clienteNew = clienteService.save(cliente);
 		} catch (Exception e) {
 			response.put("mensaje", "Error al insertar en la bbdd");
