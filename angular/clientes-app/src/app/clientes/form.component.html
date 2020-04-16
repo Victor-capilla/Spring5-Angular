@@ -46,7 +46,7 @@
 
         <div class="form-group row">
             <div class="col-sm-6">
-                <button class="btn btn-primary" role="button" type="submit" (click) ='crear()' *ngIf="!cliente.id ;else elseBlock" [show] ="!clienteForm.form.valid"> crear</button>
+                <button class="btn btn-primary" role="button" type="submit" (click) ='crear()' *ngIf="!cliente.id ;else elseBlock" [disabled] ="!clienteForm.form.valid"> crear</button>
                 <ng-template #elseBlock>
                     <button class="btn btn-primary" role="button" type="submit" (click) ='modificarCliente()' [disabled] ="!clienteForm.form.valid"> editar</button>
                 </ng-template>
