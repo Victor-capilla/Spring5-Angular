@@ -1,9 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
-
-
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -16,6 +13,13 @@ import {FormsModule } from '@angular/forms';
 import  localeES from '@angular/common/locales/es';
 import { registerLocaleData} from '@angular/common';
 import { PaginadorComponent } from './paginador/paginador.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule } from '@angular/material/datepicker'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatMomentDateModule} from '@angular/material-moment-adapter'
+
+
 registerLocaleData(localeES , 'es');
 
 
@@ -28,7 +32,7 @@ export const routes: Routes = [
   {path: 'clientes/formulario/:id' ,  component : FormComponent},
 ]
 
-ClientesService
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,13 +41,20 @@ ClientesService
     DirectivaComponent,
     ClientesComponent,
     FormComponent,
-    PaginadorComponent
+    PaginadorComponent,
+  ],
+  exports: [
+    MatFormFieldModule, 
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatFormFieldModule
   ],
   providers: [ClientesService ,{provide: LOCALE_ID , useValue:('es')}],
   bootstrap: [AppComponent]

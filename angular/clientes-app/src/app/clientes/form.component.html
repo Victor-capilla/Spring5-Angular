@@ -47,12 +47,9 @@
         <div class="form-group row">
             <label for="my-input" class="col-form-label col-sm-2">Fecha</label>
             <div class="col-sm-6">
-                <input id="fecha" class="form-control" type="date" name="fecha" [(ngModel)]="cliente.createAt" required #fecha="ngModel">
-                <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
-                    <ul *ngIf="fecha.errors.required ">
-                        <li *ngIf="fecha.errors.required">El campo es requerido</li>
-                    </ul>
-                </div>
+                    <input matInput [matDatepicker]="miDatePicker" class="form-control" name="fecha" [(ngModel)]="cliente.createAt" required #fecha="ngModel" style="display: inline; width: 90%;">
+                    <mat-datepicker-toggle matSuffix [for]="miDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #miDatePicker></mat-datepicker>
             </div>
         </div>
 
