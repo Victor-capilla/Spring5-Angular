@@ -67,9 +67,9 @@ public class ClienteRestController {
 	}
 	
 	@GetMapping("/uploads/img/{nombreFoto:.+}")
-	public ResponseEntity<Resource>  index(@PathVariable String foto){
+	public ResponseEntity<Resource>  index(@PathVariable String nombreFoto){
 		
-		Path rutaArchivo = Paths.get("uploads").resolve(foto).toAbsolutePath();
+		Path rutaArchivo = Paths.get("uploads").resolve(nombreFoto).toAbsolutePath();
 		Resource recurso = null;
 		
 		try {
@@ -79,8 +79,9 @@ public class ClienteRestController {
 		}
 		
 		if (!recurso.exists() && !recurso.isReadable()) {
-			throw new RuntimeException("Error no se pudo cargar la imagen: " +foto);
+			throw new RuntimeException("Error no se pudo cargar la imagen: " +nombreFoto);
 		}
+		log.info("subida la foto : ");
 		HttpHeaders cabecera = new HttpHeaders();
 		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename =\""+ recurso.getFilename()+ "\"");
 		return new ResponseEntity<Resource>(recurso,cabecera, HttpStatus.OK);
@@ -218,7 +219,7 @@ public class ClienteRestController {
 						archivoFotoAnteror.delete();
 					}
 				}
-				cliente.setFoto(rutaCompleta.toString());
+				cliente.setFoto(nombreArchivo);
 				clienteService.save(cliente);
 				response.put("mensaje" ,"Se ha subido una foto la foto ".concat(archivo.getName()).concat(" para el usuario ").concat(cliente.getNombre()).concat( "con exito"));
 				response.put("cliente", cliente);

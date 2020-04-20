@@ -1,3 +1,4 @@
+<detalle-cliente *ngIf="clienteSeleccionado" [cliente]="clienteSeleccionado" style="display: block;"></detalle-cliente>
 <div class="card text-dark bg-light mb-3" >
     <div class="card-header">Clientes</div>
     <div class="card-body">
@@ -18,6 +19,10 @@
           </thead>
           <tbody>
               <tr *ngFor="let cliente of clientes">
+                  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="seleccionarCliente(cliente)">
+                    Launch demo modal
+                  </button></td>
+                  <td><button class="btn btn-success" >subir foto</button></td>
                   <td>{{cliente.id}}</td>
                   <td>{{cliente.nombre | uppercase}}</td>
                   <td>{{cliente.email}}</td>

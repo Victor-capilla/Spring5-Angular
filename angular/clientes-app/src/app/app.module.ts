@@ -1,3 +1,4 @@
+import { ModalService } from './clientes/modal.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
@@ -17,7 +18,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule } from '@angular/material/datepicker'
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatMomentDateModule} from '@angular/material-moment-adapter'
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import { DetalleComponent } from './clientes/detalle/detalle.component'
 
 
 registerLocaleData(localeES , 'es');
@@ -42,6 +44,7 @@ export const routes: Routes = [
     ClientesComponent,
     FormComponent,
     PaginadorComponent,
+    DetalleComponent,
   ],
   exports: [
     MatFormFieldModule, 
@@ -56,7 +59,7 @@ export const routes: Routes = [
     MatMomentDateModule,
     MatFormFieldModule
   ],
-  providers: [ClientesService ,{provide: LOCALE_ID , useValue:('es')}],
+  providers: [ClientesService ,{provide: LOCALE_ID , useValue:('es')},ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

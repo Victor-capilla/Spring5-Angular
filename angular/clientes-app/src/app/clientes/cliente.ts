@@ -4,4 +4,5 @@ nombre:string;
 apellido:string;
 email:string;
 createAt:string;
+foto:string;
 }

@@ -1,3 +1,4 @@
+import { ModalService } from './modal.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Cliente} from './cliente';
 import { ClientesService} from './clientes.service';
@@ -15,8 +16,9 @@ import { tap, map } from 'rxjs/operators';
 export class ClientesComponent implements OnInit {
 
   clientes: Cliente[];
+  clienteSeleccionado : Cliente;
   paginador : any;
-  constructor(private clienteService: ClientesService , private activatedRoute: ActivatedRoute) { }
+  constructor(private clienteService: ClientesService , private activatedRoute: ActivatedRoute ,public modalService: ModalService) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe( params => {
@@ -30,6 +32,12 @@ export class ClientesComponent implements OnInit {
       )
      }
     )
+  }
+
+  seleccionarCliente(cliente){
+    this.clienteSeleccionado = cliente;
+    this.modalService.abrir;
+    console.log(cliente);
   }
 
   eliminarCliente(cliente : Cliente): void {

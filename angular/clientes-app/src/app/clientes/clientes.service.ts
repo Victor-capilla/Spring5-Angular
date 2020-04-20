@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import {CLIENTES} from './clientes.json';
 import { Cliente} from './cliente';
-import  {Observable, of, throwError }  from 'rxjs';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import  {catchError }  from 'rxjs/operators';
+import  {Observable, of, throwError,  }  from 'rxjs';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEvent} from '@angular/common/http';
+import  {catchError, map }  from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { routes } from '../app.module';
-
 
 
 
@@ -23,7 +21,8 @@ export class ClientesService {
   }
 //Devolvemos un observable de tipo Any para no que devuelva el map con todos los parametros del endpoint del backend
   postClientes(cliente : Cliente): Observable<any>{
-    return this.http.post<any>(this.urlEndPoint, cliente , {headers :this.httpHeaders});
+
+
     return this.http.post<any>(this.urlEndPoint, cliente , {headers :this.httpHeaders}).pipe(
       catchError(e => {
         if (e.status===400) {
@@ -36,7 +35,30 @@ export class ClientesService {
       })
     );
   }
-
+map
+  subirfoto(archivo:File , id): Observable<HttpEvent<{}>>{
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id" , id);
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/upload`, formData, {
+      reportProgress: true
+    });
+    return this.http.request(req);
+    /* .pipe(
+      map((response : any) =>{
+     return  response.cliente as Cliente;
+      }),
+      catchError(e => {
+        if (e.status===400) {
+          return throwError(e);
+        }
+        this.router.navigate(["/clientes"])
+        console.error(e.error.mensaje);
+        Swal.fire('Error al crear', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    ); */
+  }
   getCliente(id): Observable<any>{
     return this.http.get<any>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
@@ -47,6 +69,8 @@ export class ClientesService {
       })
     );
   }
+
+  
 
   modificarCliente(cliente: Cliente): Observable<any>{
     return this.http.put<any>(`${this.urlEndPoint}/${cliente.id}`, cliente , {headers: this.httpHeaders}).pipe(
