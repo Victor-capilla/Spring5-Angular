@@ -11,7 +11,7 @@ import { routes } from '../app.module';
 
 @Injectable()
 export class ClientesService {
-  private urlEndPoint:string = 'http://localhost:8181/clientes';
+  private urlEndPoint:string = 'http://localhost:8080/clientes';
   private httpHeaders = new HttpHeaders({'content-Type' : 'application/json'});
   constructor(private http: HttpClient , private router:Router) { }
 

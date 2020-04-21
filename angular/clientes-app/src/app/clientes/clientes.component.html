@@ -9,7 +9,7 @@
       </div>
       <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
           <thead>
-             <th>id</th>
+             <th>foto</th>
              <th>nombre</th>
              <th>email</th>
              <th>apellido</th>
@@ -19,11 +19,9 @@
           </thead>
           <tbody>
               <tr *ngFor="let cliente of clientes">
-                  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="seleccionarCliente(cliente)">
-                    Launch demo modal
-                  </button></td>
-                  <td><button class="btn btn-success" >subir foto</button></td>
-                  <td>{{cliente.id}}</td>
+                  <td>
+                    <img class="img-thumbnail" *ngIf="cliente?.foto" src="http://localhost:8080/uploads/img/{{cliente.foto}}" alt="fotoCliente" style="width: 50px; height: 50px;" data-toggle="modal" data-target="#exampleModal" (click)="seleccionarCliente(cliente)">
+                    <img class="img-thumbnail" *ngIf="!cliente?.foto" src="http://localhost:8080/images/no-user.png" alt="sin foto" style="width: 50px; height: 50px;" data-toggle="modal" data-target="#exampleModal" (click)="seleccionarCliente(cliente)"></td>
                   <td>{{cliente.nombre | uppercase}}</td>
                   <td>{{cliente.email}}</td>
                   <td>{{cliente.apellido}}</td>

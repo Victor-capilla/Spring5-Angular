@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="background-color:#007bff ;">
         <div class="container">
           <div class="row">
             <div class="col-sm-8" >
@@ -20,10 +20,10 @@
                 <li><div class="input-group" style=" margin-bottom : 2%">
                   <div class="custom-file">
                     <input (change)="seleccionarFoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                    <label class="custom-file-label" for="inputGroupFile04">subir foto</label>
+                    <h4><label class="custom-file-label" for="inputGroupFile04">subir foto</label></h4>
                   </div>
                   <div class="input-group-append">
-                    <button (click) = "subirFoto()" [disabled]="!archivo" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                    <button (click) = "subirFoto()" [disabled]="!archivo" class="btn btn-success" type="button" id="inputGroupFileAddon04">subir foto</button>
                   </div>
                 </div></li>
                 <li><div class="progress" *ngIf="progres >0">
@@ -32,14 +32,13 @@
               </ul>
             </div>
             <div class="col-sm-4" >
-              <img class="img-thumbnail" *ngIf="cliente?.foto"src="{{ruta}}" alt="fotoCliente"  >
+              <img class="img-thumbnail" *ngIf="cliente?.foto"src="http://localhost:8080/uploads/img/{{cliente.foto}}" alt="fotoCliente"  >
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

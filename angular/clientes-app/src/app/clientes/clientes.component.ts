@@ -5,7 +5,7 @@ import { ClientesService} from './clientes.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { tap, map } from 'rxjs/operators';
-
+import * as $ from 'jquery';
 
 
 @Component({
@@ -25,13 +25,18 @@ export class ClientesComponent implements OnInit {
       let page:number = params.get('page')?.length>0 ? +params.get('page') :0;
       this.clienteService.getClientes(page).subscribe(
       response => {
-        console.log(response)
         this.clientes = response.content as Cliente[];
         this.paginador = response;
-      }
-      )
-     }
-    )
+      });
+     });
+     this.modalService.notificarUpload.subscribe(cliente => {
+      this.clientes=  this.clientes.map(clienteOriginal =>{
+        if (clienteOriginal.id == cliente.id) {
+          clienteOriginal.foto = cliente.foto;
+        }
+        return clienteOriginal;
+       })
+     })
   }
 
   seleccionarCliente(cliente){

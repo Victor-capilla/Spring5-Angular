@@ -5,6 +5,7 @@ import { Route } from '@angular/compiler/src/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { catchError } from 'rxjs/operators';
+import * as $ from 'jquery';
 
 
 

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import * as $ from 'jquery';
 
 /** @title Datepicker selected value */
 @Component({
