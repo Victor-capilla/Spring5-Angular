@@ -3,6 +3,7 @@ package com.example.springbootbackendapirest.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -58,7 +59,7 @@ public class Cliente implements Serializable{
 	
 	// many representa a clientes y one a region ya que es n:1 
 	// por defecto si no ponemos joincolumn y el nombre , el atributo en la tabla se llamara como se llame el atr de java
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
 	@JoinColumn(name = "region_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Region region;
