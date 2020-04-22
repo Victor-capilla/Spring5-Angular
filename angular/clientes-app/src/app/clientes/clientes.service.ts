@@ -1,3 +1,4 @@
+import { Region } from './region';
 import { Injectable } from '@angular/core';
 import { Cliente} from './cliente';
 import  {Observable, of, throwError,  }  from 'rxjs';
@@ -19,10 +20,13 @@ export class ClientesService {
     return this.http.get<any[]>(`${this.urlEndPoint}/pagina/${page}`).pipe(
     );
   }
+
+  getRegiones(): Observable<Region[]>{
+    return this.http.get<Region[]>(`${this.urlEndPoint.replace("/clientes", "/regiones")}`).pipe(
+    );
+  }
 //Devolvemos un observable de tipo Any para no que devuelva el map con todos los parametros del endpoint del backend
   postClientes(cliente : Cliente): Observable<any>{
-
-
     return this.http.post<any>(this.urlEndPoint, cliente , {headers :this.httpHeaders}).pipe(
       catchError(e => {
         if (e.status===400) {
@@ -35,7 +39,7 @@ export class ClientesService {
       })
     );
   }
-map
+
   subirfoto(archivo:File , id): Observable<HttpEvent<{}>>{
     let formData = new FormData();
     formData.append("archivo", archivo);
@@ -43,7 +47,11 @@ map
     const req = new HttpRequest('POST', `${this.urlEndPoint}/upload`, formData, {
       reportProgress: true
     });
-    return this.http.request(req);
+    return this.http.request(req).pipe(
+      catchError(e => {
+        return throwError(e);
+      })
+    );
     /* .pipe(
       map((response : any) =>{
      return  response.cliente as Cliente;

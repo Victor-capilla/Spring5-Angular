@@ -50,7 +50,14 @@ export class DetalleComponent implements OnInit {
               this.progres = 0;
             }, 1500);
             }
-      })
+      },
+      err => {
+        this.modalService.cerrar();
+        console.error("La imagen debe de ser menor a 10mb :" +JSON.stringify(err))
+        swal.fire('Error al subir la foto', "", 'error');
+
+      }
+      )
     }
   }
 

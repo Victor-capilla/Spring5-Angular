@@ -18,3 +18,8 @@ INSERT INTO clientes(nombre, apellido, email, foto, create_at) VALUES('Andres' ,
 INSERT INTO clientes(nombre, apellido, email, foto, create_at) VALUES('Andress' ,'Guzmans' , 'yosdsfds@hotmail.com','','2020-04-06')
 INSERT INTO clientes(nombre, apellido, email, foto, create_at) VALUES('Andres' ,'Guzman' , 'yosdfsdf@hotmail.com' ,'','2020-04-05')
 INSERT INTO clientes(nombre, apellido, email, foto, create_at) VALUES('Andress' ,'Guzmans' , 'yosaaasdfsdfs@hotmail.com','','2020-04-06')
+INSERT INTO regiones(nombre) VALUES('Europa' )
+INSERT INTO regiones(nombre) VALUES('America' )
+INSERT INTO regiones(nombre) VALUES('Asia' )
+INSERT INTO regiones(nombre) VALUES('Africa' )
+INSERT INTO regiones(nombre) VALUES('Oceania' )

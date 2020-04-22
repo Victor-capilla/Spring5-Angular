@@ -3,4 +3,7 @@ com\example\springbootbackendapirest\models\services\ClienteServiceImpl.class
 com\example\springbootbackendapirest\models\services\IClienteService.class
 com\example\springbootbackendapirest\SpringBootBackendApirestApplication.class
 com\example\springbootbackendapirest\models\dao\IClienteDao.class
+com\example\springbootbackendapirest\models\services\UploadFileServiceImpl.class
 com\example\springbootbackendapirest\controllers\ClienteRestController.class
+com\example\springbootbackendapirest\models\services\IUploadFileService.class
+com\example\springbootbackendapirest\models\entity\Region.class

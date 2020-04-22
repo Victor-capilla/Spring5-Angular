@@ -40,6 +40,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.springbootbackendapirest.models.entity.Cliente;
+import com.example.springbootbackendapirest.models.entity.Region;
 import com.example.springbootbackendapirest.models.services.IClienteService;
 import com.example.springbootbackendapirest.models.services.IUploadFileService;
 import com.example.springbootbackendapirest.models.services.UploadFileServiceImpl;
@@ -60,6 +61,12 @@ public class ClienteRestController {
 	@GetMapping("/clientes")
 	public List<Cliente> index(){
 		return clienteService.findAll();
+		
+	}
+	
+	@GetMapping("/regiones")
+	public List<Region> regiones(){
+		return clienteService.findAllRegiones();
 		
 	}
 	
@@ -154,6 +161,7 @@ public class ClienteRestController {
 			clienteActual.setEmail(cliente.getEmail());
 			clienteActual.setNombre(cliente.getNombre());
 			clienteActual.setCreateAt("".equals(cliente.getCreateAt()) || "null".equals(cliente.getCreateAt())?new Date() : cliente.getCreateAt());
+			clienteActual.setRegion(cliente.getRegion());
 			clienteUpdated=clienteService.save(clienteActual);
 		} catch (DataAccessException e) {
 			response.put("mensaje", "error al actualizar el cliente en la bbdd");
@@ -184,6 +192,7 @@ public class ClienteRestController {
 		
 		try {
 			clienteNew = clienteService.save(cliente);
+			log.info("este el el puto cliente :"+cliente);
 		} catch (Exception e) {
 			response.put("mensaje", "Error al insertar en la bbdd");
 			response.put("error", e.getMessage());

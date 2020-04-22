@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.example.springbootbackendapirest.models.entity.Cliente;
+import com.example.springbootbackendapirest.models.entity.Region;
 
 public interface IClienteService {
 	
@@ -22,5 +23,7 @@ public interface IClienteService {
 	public void delete(Long id);
 	
 	public void deleteAll(List<Cliente> clientes);
+	
+	public List<Region> findAllRegiones();
 	
 	 }

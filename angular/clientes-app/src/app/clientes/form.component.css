@@ -1,8 +1,8 @@
-input:focus:invalid{
+input:focus:invalid, select:focus:invalid{
     /* insert your own styles for invalid form input */
     border: 2px solid rgb(204, 95, 95);
   }
-  input:valid{
+  input:valid , select:valid{
     /* insert your own styles for invalid form input */
     border: 2px solid rgb(108, 199, 108);
   }

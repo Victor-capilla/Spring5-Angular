@@ -47,11 +47,26 @@
         <div class="form-group row">
             <label for="my-input" class="col-form-label col-sm-2">Fecha</label>
             <div class="col-sm-6">
-                    <input matInput [matDatepicker]="miDatePicker" class="form-control" name="fecha" [(ngModel)]="cliente.createAt" required #fecha="ngModel" style="display: inline; width: 90%;">
+                    <input matInput [matDatepicker]="miDatePicker" class="form-control" name="fecha" [(ngModel)]="cliente.createAt" required  #fecha="ngModel"  style="display: inline; width: 90%;">
                     <mat-datepicker-toggle matSuffix [for]="miDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #miDatePicker></mat-datepicker>
+                    <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+                        <ul *ngIf="fecha.errors.required || fecha.errors.pattern">
+                            <li *ngIf="fecha.errors.required">El campo es requerido</li>
+                            <li *ngIf="fecha.errors.pattern">tiene que tener un formato tipo email</li>
+                        </ul>
+                    </div>
             </div>
         </div>
+
+        <div class="form-group row">
+            <label for="region" class="col-form-label col-sm-2">Region</label>
+            <div class="col-sm-6">
+            <select [compareWith]="compararRegion" class="form-control" id="region" name="region"  [(ngModel)]="cliente.region" required  #region="ngModel" >
+              <option *ngFor="let region of regiones" [ngValue]="region">{{region.nombre}}</option>
+            </select>
+        </div>
+          </div>
 
         <div class="form-group row">
             <div class="col-sm-6">
