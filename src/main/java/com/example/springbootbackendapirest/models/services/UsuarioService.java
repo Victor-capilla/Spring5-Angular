@@ -19,7 +19,7 @@ import com.example.springbootbackendapirest.models.dao.IUsuarioDao;
 import com.example.springbootbackendapirest.models.entity.Usuario;
 
 @Service
-public class UsuarioService implements UserDetailsService{
+public class UsuarioService implements UserDetailsService , IUsuarioService{
 	
 	private Logger log = LoggerFactory.getLogger(UsuarioService.class);
 	
@@ -29,7 +29,7 @@ public class UsuarioService implements UserDetailsService{
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = iUsuarioDao.findByUsername(username);
+		Usuario usuario = findByUsername(username);
 		
 		if ("null".equals(usuario)) {
 			log.error("Error al loguear : el usuario ".concat(usuario.getUsername()).concat(" no existe"));
@@ -41,6 +41,13 @@ public class UsuarioService implements UserDetailsService{
 				.peek(auth -> log.info("Role : ".concat(auth.getAuthority())))
 				.collect(Collectors.toList());
 		return new User(username, usuario.getPassword(), usuario.isEnabled(), true, true, true, authorities);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Usuario findByUsername(String nombre) {
+		// TODO Auto-generated method stub
+		return iUsuarioDao.findByUsername(nombre);
 	}
 
 }
