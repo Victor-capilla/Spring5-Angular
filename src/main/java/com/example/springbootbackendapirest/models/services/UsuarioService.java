@@ -3,6 +3,8 @@ package com.example.springbootbackendapirest.models.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +21,8 @@ import com.example.springbootbackendapirest.models.entity.Usuario;
 @Service
 public class UsuarioService implements UserDetailsService{
 	
+	private Logger log = LoggerFactory.getLogger(UsuarioService.class);
+	
 	@Autowired
 	private IUsuarioDao iUsuarioDao;
 	
@@ -26,7 +30,16 @@ public class UsuarioService implements UserDetailsService{
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = iUsuarioDao.findByUsername(username);
-		List<GrantedAuthority> authorities = usuario.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
+		
+		if ("null".equals(usuario)) {
+			log.error("Error al loguear : el usuario ".concat(usuario.getUsername()).concat(" no existe"));
+			throw new UsernameNotFoundException("Error al loguear : el usuario ".concat(usuario.getUsername()).concat(" no existe"));
+		}
+		List<GrantedAuthority> authorities = usuario.getRoles()
+				.stream()
+				.map(role -> new SimpleGrantedAuthority(role.getNombre()))
+				.peek(auth -> log.info("Role : ".concat(auth.getAuthority())))
+				.collect(Collectors.toList());
 		return new User(username, usuario.getPassword(), usuario.isEnabled(), true, true, true, authorities);
 	}
 

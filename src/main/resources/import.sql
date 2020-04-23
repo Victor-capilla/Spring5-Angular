@@ -18,8 +18,19 @@ INSERT INTO clientes(nombre, apellido, email, foto, create_at) VALUES('Andres' ,
 INSERT INTO clientes(nombre, apellido, email, foto, create_at) VALUES('Andress' ,'Guzmans' , 'yosdsfds@hotmail.com','','2020-04-06')
 INSERT INTO clientes(nombre, apellido, email, foto, create_at) VALUES('Andres' ,'Guzman' , 'yosdfsdf@hotmail.com' ,'','2020-04-05')
 INSERT INTO clientes(nombre, apellido, email, foto, create_at) VALUES('Andress' ,'Guzmans' , 'yosaaasdfsdfs@hotmail.com','','2020-04-06')
+
 INSERT INTO regiones(nombre) VALUES('Europa' )
 INSERT INTO regiones(nombre) VALUES('America' )
 INSERT INTO regiones(nombre) VALUES('Asia' )
 INSERT INTO regiones(nombre) VALUES('Africa' )
 INSERT INTO regiones(nombre) VALUES('Oceania' )
+
+INSERT INTO usuarios(username , password , enabled) values ('andres' , '$2a$10$P9l2.MZ9QMXh.uw8tFDoAO.TMcgDWCBlDJfZuTdVAZjbzPnkG7TLu' , 1)
+INSERT INTO usuarios(username , password , enabled) values ('admin' , '$2a$10$h/yTsH97RzQiE7hmGYyifedr.mEkyFPW80oAZ9cHkYmADfXAwQfoq' , 1)
+
+INSERT INTO roles(nombre) values ('ROLE_USER')
+INSERT INTO roles(nombre) values ('ROLE_ADMIN')
+
+INSERT INTO users_authorities(usuarios_id , roles_id) values (1 , 1)
+INSERT INTO users_authorities(usuarios_id , roles_id) values (2 , 2)
+INSERT INTO users_authorities(usuarios_id , roles_id) values (2 , 1)
