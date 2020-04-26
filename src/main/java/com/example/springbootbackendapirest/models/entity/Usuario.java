@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -28,6 +29,42 @@ public class Usuario {
 	@Column(nullable = false , unique = true)
 	@Size(min = 4 , max = 20)
 	private String username;
+	
+	@Size(min = 4 , max = 20)
+	private String apellido;
+	
+	@NotEmpty
+	@Column(nullable = false , unique = true)
+	@Size(min = 4 , max = 20)
+	@Email
+	private String email;
+	
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	@Size(min = 4 , max = 20)
+	private String nombre;
 	
 	@NotEmpty
 	@Column(nullable = false)

@@ -25,8 +25,8 @@ INSERT INTO regiones(nombre) VALUES('Asia' )
 INSERT INTO regiones(nombre) VALUES('Africa' )
 INSERT INTO regiones(nombre) VALUES('Oceania' )
 
-INSERT INTO usuarios(username , password , enabled) values ('andres' , '$2a$10$P9l2.MZ9QMXh.uw8tFDoAO.TMcgDWCBlDJfZuTdVAZjbzPnkG7TLu' , 1)
-INSERT INTO usuarios(username , password , enabled) values ('admin' , '$2a$10$h/yTsH97RzQiE7hmGYyifedr.mEkyFPW80oAZ9cHkYmADfXAwQfoq' , 1)
+INSERT INTO usuarios(username , apellido, email,nombre, password, enabled) values ('andres' , 'perez','andres@gmail.com','andres','$2a$10$P9l2.MZ9QMXh.uw8tFDoAO.TMcgDWCBlDJfZuTdVAZjbzPnkG7TLu' , 1)
+INSERT INTO usuarios(username , apellido, email,nombre, password, enabled) values ('admin', 'perez','admin@gmail.com' ,'admin', '$2a$10$jmt/Y4MoEQqhQyHFg8p5BOqZX2OvZnHHjzpt.ezf8Tihb/HytIgo6' , 1)
 
 INSERT INTO roles(nombre) values ('ROLE_USER')
 INSERT INTO roles(nombre) values ('ROLE_ADMIN')
