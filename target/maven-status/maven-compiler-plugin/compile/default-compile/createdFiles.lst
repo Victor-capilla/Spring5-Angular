@@ -1,5 +1,6 @@
 com\example\springbootbackendapirest\models\services\ClienteServiceImpl.class
 com\example\springbootbackendapirest\models\services\UsuarioService.class
+com\example\springbootbackendapirest\models\services\IUsuarioService.class
 com\example\springbootbackendapirest\models\entity\Usuario.class
 com\example\springbootbackendapirest\models\services\UploadFileServiceImpl.class
 com\example\springbootbackendapirest\controllers\ClienteRestController.class
@@ -10,7 +11,9 @@ com\example\springbootbackendapirest\models\entity\Cliente.class
 com\example\springbootbackendapirest\models\services\IClienteService.class
 com\example\springbootbackendapirest\SpringBootBackendApirestApplication.class
 com\example\springbootbackendapirest\auth\AuthorizationServerConfig.class
+com\example\springbootbackendapirest\auth\InfoAdicionalToken.class
 com\example\springbootbackendapirest\models\dao\IClienteDao.class
 com\example\springbootbackendapirest\models\entity\Role.class
 com\example\springbootbackendapirest\auth\ResourceServerConfig.class
+com\example\springbootbackendapirest\auth\JwtConfig.class
 com\example\springbootbackendapirest\models\services\IUploadFileService.class

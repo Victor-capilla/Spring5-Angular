@@ -19,19 +19,21 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule } from '@angular/material/datepicker'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import { DetalleComponent } from './clientes/detalle/detalle.component'
+import { DetalleComponent } from './clientes/detalle/detalle.component';
+import { LoginComponent } from './usuarios/login.component'
 
 
 registerLocaleData(localeES , 'es');
 
 
 export const routes: Routes = [
-  {path: '' , redirectTo: '/directivas' ,pathMatch: 'full'},
+  {path: '' , redirectTo: '/login' ,pathMatch: 'full'},
   {path: 'directivas' , component : DirectivaComponent},
   {path: 'clientes' ,  component : ClientesComponent},
   {path: 'clientes/pagina/:page' ,  component : ClientesComponent},
   {path: 'clientes/formulario' ,  component : FormComponent},
   {path: 'clientes/formulario/:id' ,  component : FormComponent},
+  {path: 'login' ,  component : LoginComponent},
 ]
 
 
@@ -45,6 +47,7 @@ export const routes: Routes = [
     FormComponent,
     PaginadorComponent,
     DetalleComponent,
+    LoginComponent,
   ],
   exports: [
     MatFormFieldModule, 

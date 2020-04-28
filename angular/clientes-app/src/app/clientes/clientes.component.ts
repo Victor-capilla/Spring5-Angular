@@ -41,7 +41,7 @@ export class ClientesComponent implements OnInit {
 
   seleccionarCliente(cliente){
     this.clienteSeleccionado = cliente;
-    this.modalService.abrir;
+    this.modalService.abrir();
     console.log(cliente);
   }
 

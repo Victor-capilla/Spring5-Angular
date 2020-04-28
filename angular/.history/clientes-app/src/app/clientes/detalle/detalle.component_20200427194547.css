@@ -1,0 +1,6 @@
+li{
+    list-style: none;
+}
+.modal-backdrop {
+    z-index: -1;
+  }
