@@ -59,7 +59,7 @@ public class Cliente implements Serializable{
 	
 	// many representa a clientes y one a region ya que es n:1 
 	// por defecto si no ponemos joincolumn y el nombre , el atributo en la tabla se llamara como se llame el atr de java
-	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY )
 	@JoinColumn(name = "region_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Region region;
@@ -87,6 +87,11 @@ public class Cliente implements Serializable{
 	}
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", foto="
+				+ foto + ", createAt=" + createAt + ", region=" + region + "]";
 	}
 	public String getEmail() {
 		return email;

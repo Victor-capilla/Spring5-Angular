@@ -58,6 +58,7 @@ public class ClienteServiceImpl implements IClienteService{
 		
 	}
 	@Override
+	@Transactional(readOnly = true)
 	public List<Region> findAllRegiones() {
 		// TODO Auto-generated method stub
 		return clienteDao.findAllRegiones();

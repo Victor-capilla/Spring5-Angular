@@ -198,8 +198,10 @@ public class ClienteRestController {
 		}
 		
 		try {
+			log.info("ANTES el puto cliente :"+cliente);
+			
 			clienteNew = clienteService.save(cliente);
-			log.info("este el el puto cliente :"+cliente);
+			log.info("DSEPUES el puto cliente :"+cliente);
 		} catch (Exception e) {
 			response.put("mensaje", "Error al insertar en la bbdd");
 			response.put("error", e.getMessage());
