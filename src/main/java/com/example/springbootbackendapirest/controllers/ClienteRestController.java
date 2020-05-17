@@ -213,8 +213,8 @@ public class ClienteRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
-	@PostMapping("clientes/upload")
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@PostMapping("/clientes/upload")
 	public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id){
 		Map<String, Object> response = new HashMap<>();
 		Cliente cliente = clienteService.findByID(id);

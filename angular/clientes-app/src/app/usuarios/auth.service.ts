@@ -70,17 +70,27 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean{
-    let payload = this.obtenerDatosToken(this._token);
-    console.log(this._token)
-    console.log(payload)
-    return (payload && payload.user_name)? true : false
+    let payload = this.obtenerDatosToken(this.token);
+    return (payload && payload.user_name)? true : false;
   }
-
+   hasRole(role:string){
+    return this.usuario.roles.includes(role)? true:false;
+   }
   logout(){
     this._token = null;
     this._usuario = null;
     sessionStorage.clear();
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('usuario');
+  }
+
+  isExpiredToken():boolean{
+    let token = this.token;
+    let payload = this.obtenerDatosToken(token);
+    let now = new Date().getTime() /1000;
+    if (payload.exp < now) {
+      return true;
+    }
+    return false;
   }
 }

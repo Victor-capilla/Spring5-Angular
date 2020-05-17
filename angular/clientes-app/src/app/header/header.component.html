@@ -22,7 +22,7 @@
           <a class="nav-link" [routerLink]="['/login']" >login</a>
         </li>
       </ul>
-        <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/login']" routerLinkActive="router-link-active"   *ngIf="!this.authService.isAuthenticated();else dropdown" >login</button>
+        <!-- <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/login']" routerLinkActive="router-link-active"   *ngIf="!this.authService.isAuthenticated();else dropdown" >login</button>
         <ng-template #dropdown>  
         <div class="dropdown" >
           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,6 +32,6 @@
             <a class="dropdown-item"(click) = "this.authService.logout()" [routerLink]="['/login']" routerLinkActive="router-link-active" >logout</a>
           </div>
         </div>
-      </ng-template>
+      </ng-template> -->
     </div>
   </nav>

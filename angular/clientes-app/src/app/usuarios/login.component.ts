@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit , OnChanges{
       this.router.navigate(['/clientes'])
     }
   }
-
+  
   login() {
     console.log("usuario :" +this.usuario)
     if (this.usuario.username == null || this.usuario.password ==null) {
