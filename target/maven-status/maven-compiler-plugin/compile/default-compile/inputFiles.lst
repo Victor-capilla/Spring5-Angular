@@ -1,19 +1,19 @@
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\services\IUsuarioService.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\auth\AuthorizationServerConfig.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\services\ClienteServiceImpl.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\services\IUploadFileService.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\services\IClienteService.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\auth\JwtConfig.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\dao\IClienteDao.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\auth\InfoAdicionalToken.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\services\UploadFileServiceImpl.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\auth\ResourceServerConfig.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\entity\Region.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\services\UsuarioService.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\auth\SpringSecurityConfig.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\controllers\ClienteRestController.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\dao\IUsuarioDao.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\entity\Cliente.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\entity\Role.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\models\entity\Usuario.java
-C:\Users\VCR\eclipse-workspace\spring5-angular\src\main\java\com\example\springbootbackendapirest\SpringBootBackendApirestApplication.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/services/IUploadFileService.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/entity/Role.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/auth/JwtConfig.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/services/IUsuarioService.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/dao/IUsuarioDao.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/auth/SpringSecurityConfig.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/controllers/ClienteRestController.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/services/UploadFileServiceImpl.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/auth/AuthorizationServerConfig.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/services/UsuarioService.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/auth/ResourceServerConfig.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/SpringBootBackendApirestApplication.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/dao/IClienteDao.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/services/IClienteService.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/entity/Cliente.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/auth/InfoAdicionalToken.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/entity/Region.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/entity/Usuario.java
+/home/vcr/.local/share/Trash/files/Spring5-Angular (3)/src/main/java/com/example/springbootbackendapirest/models/services/ClienteServiceImpl.java
