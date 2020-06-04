@@ -1,7 +1,8 @@
 package com.example.springbootbackendapirest.models.entity;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,111 +13,122 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.hateoas.server.core.Relation;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
-@Table(name="clientes")
-public class Cliente implements Serializable{
-	
+@Table(name = "clientes")
+public class Cliente implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(nullable = false)
-	@NotEmpty
-	@Size(min = 4)
-	private String nombre;
-	
-	@NotEmpty
-	@Size(min = 4)
-	private String apellido;
-	
-	@Column(nullable = false,unique = true)
-	@Size(min = 5)
-	@NotEmpty
-	@Email
-	private String email;
-	
 
-	private String foto;
-	
-	@Column(name="create_at")
+	@NotEmpty(message = "no puede estar vacio")
+	@Size(min = 4, max = 12, message = "el tamaño tiene que estar entre 4 y 12")
+	@Column(nullable = false)
+	private String nombre;
+
+	@NotEmpty(message = "no puede estar vacio")
+	private String apellido;
+
+	@NotEmpty(message = "no puede estar vacio")
+	@Email(message = "no es una dirección de correo bien formada")
+	@Column(nullable = false, unique = true)
+	private String email;
+
+	@NotNull(message = "no puede estar vacio")
+	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
-	
-	
-	// many representa a clientes y one a region ya que es n:1 
-	// por defecto si no ponemos joincolumn y el nombre , el atributo en la tabla se llamara como se llame el atr de java
-	@ManyToOne(fetch = FetchType.LAZY )
+
+	private String foto;
+
+	@NotNull(message = "la región no puede ser vacia")
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "region_id")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private Region region;
-	
+
+	@JsonIgnoreProperties(value={"cliente", "hibernateLazyInitializer", "handler"}, allowSetters=true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.ALL)
+	private List<Factura> facturas;
+
+	public Cliente() {
+		this.facturas = new ArrayList<>();
+	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Region getRegion() {
-		return region;
-	}
-	public void setRegion(Region region) {
-		this.region = region;
-	}
+
 	public String getApellido() {
 		return apellido;
 	}
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", foto="
-				+ foto + ", createAt=" + createAt + ", region=" + region + "]";
-	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public Date getCreateAt() {
 		return createAt;
 	}
+
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
+
 	public String getFoto() {
 		return foto;
 	}
+
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-//	@PrePersist
-//	public void prePersist() {
-//		createAt = new Date();
-//		
-//	}
-	
 
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
+	}
+
+	private static final long serialVersionUID = 1L;
 }

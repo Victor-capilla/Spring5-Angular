@@ -8,7 +8,7 @@
       </div>
       <table class="table table-bordered table-striped container" *ngIf="clientes?.length>0">
           <thead>
-             <th *ngIf="authService.hasRole('ROLE_USER')">cliente</th>
+             <th>informacion</th>
              <th>nombre</th>
              <th>email</th>
              <th>apellido</th>
@@ -19,7 +19,7 @@
           </thead>
           <tbody>
               <tr *ngFor="let cliente of clientes">
-                  <td  *ngIf="authService.hasRole('ROLE_USER')">
+                  <td >
                     <img class="img-thumbnail" *ngIf="cliente?.foto" src="http://localhost:8080/uploads/img/{{cliente.foto}}" alt="fotoCliente"  data-toggle="modal" data-target="#exampleModal" (click)="seleccionarCliente(cliente)">
                     <img class="img-thumbnail" *ngIf="!cliente?.foto" src="http://localhost:8080/images/no-user.png" alt="sin foto"  data-toggle="modal" data-target="#exampleModal" (click)="seleccionarCliente(cliente)"></td>
                   <td>{{cliente.nombre | uppercase}}</td>

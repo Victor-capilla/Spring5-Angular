@@ -1,5 +1,5 @@
 package com.example.springbootbackendapirest.models.entity;
-
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,72 +9,40 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="usuarios")
-public class Usuario {
-	
+@Table(name = "usuarios")
+public class Usuario implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id ;
-	
-	@NotEmpty
-	@Column(nullable = false , unique = true)
-	@Size(min = 4 , max = 20)
+	private Long id;
+
+	@Column(unique = true, length = 20)
 	private String username;
+
+	@Column(length = 60)
+	private String password;
+
+	private Boolean enabled;
 	
-	@Size(min = 4 , max = 20)
+	private String nombre;
 	private String apellido;
 	
-	@NotEmpty
-	@Column(nullable = false , unique = true)
-	@Size(min = 4 , max = 20)
-	@Email
+	@Column(unique = true)
 	private String email;
-	
-	public String getApellido() {
-		return apellido;
-	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	@Size(min = 4 , max = 20)
-	private String nombre;
-	
-	@NotEmpty
-	@Column(nullable = false)
-	@Size(min = 8 , max = 100)
-	private String password;
-	
-	@ManyToMany(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-	@JoinTable(name = "users_authorities" , uniqueConstraints = {@UniqueConstraint(columnNames = {"roles_id" , "usuarios_id"})})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="usuario_id"),
+	inverseJoinColumns=@JoinColumn(name="role_id"),
+	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
 	private List<Role> roles;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -99,6 +67,14 @@ public class Usuario {
 		this.password = password;
 	}
 
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -107,16 +83,32 @@ public class Usuario {
 		this.roles = roles;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	private boolean enabled;
-	
-	private static final long serialVerionUID = 1L;
+	public String getApellido() {
+		return apellido;
+	}
 
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 }
